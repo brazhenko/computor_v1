@@ -5,16 +5,17 @@
 #include "tokenizer.h"
 #include <regex>
 #include <iostream>
+#include <array>
 
-#define PATTERN_VARIABLE	std::regex("X")
-#define PATTERN_INTEGER		std::regex("\\d+")
-#define PATTERN_FLOATING	std::regex("^[-+]{0}\\d+\\.\\d+")
-#define PATTERN_CAP			std::regex("\\^")
-#define PATTERN_EQU			std::regex("\\=")
-#define PATTERN_MUL			std::regex("\\*")
-#define PATTERN_PLUS		std::regex("\\+")
-#define PATTERN_MINUS		std::regex("\\-")
-#define PATTERN_WHITESPACE	std::regex("[\n\t\v\r\f\\ ]+")
+#define PATTERN_VARIABLE	patterns[0]
+#define PATTERN_INTEGER		patterns[1]
+#define PATTERN_FLOATING	patterns[2]
+#define PATTERN_CAP			patterns[3]
+#define PATTERN_EQU			patterns[4]
+#define PATTERN_MUL			patterns[5]
+#define PATTERN_PLUS		patterns[6]
+#define PATTERN_MINUS		patterns[7]
+#define PATTERN_WHITESPACE	patterns[8]
 
 namespace tokenizer
 {
@@ -30,6 +31,18 @@ using std::regex_search;
 
 [[nodiscard]] std::vector<Token> tokenize(const std::string &s)
 {
+	std::array<std::basic_regex<char>, 9> patterns{{
+std::regex("X"),
+std::regex("\\d+"),
+std::regex("^[-+]{0}\\d+\\.\\d+"),
+std::regex("\\^"),
+std::regex("\\="),
+std::regex("\\*"),
+std::regex("\\+"),
+std::regex("\\-"),
+std::regex("[\n\t\v\r\f\\ ]+")
+	}};
+
 	std::vector<Token> vec;
 
 	std::size_t i_current_pos = 0;
