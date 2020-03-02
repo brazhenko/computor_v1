@@ -5,8 +5,11 @@
 #ifndef COMPUTOR_POLINOM_SOLVER_H
 #define COMPUTOR_POLINOM_SOLVER_H
 
+#include <complex>
 #include "polinomial/polinomial.h"
 
-int 	polinom_solver(const polinomial& pol);
+typedef std::vector<std::complex<double> > PolSolutions;
+
+int 	polinom_solver(const polinomial<int, double>& pol);
 
 #endif //COMPUTOR_POLINOM_SOLVER_H

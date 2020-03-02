@@ -4,15 +4,17 @@
 
 #include <sstream>
 #include "polinom_parser.h"
+#include <iostream>
 
 static void PushMonomial(
-		polinomial& Pol,
+		polinomial<int, double>& Pol,
 		enum MonomialSign sign,
 		double coef,
 		int exp,
 		enum EquStatus equ
 )
 {
+	// std::cout <<  std::endl << "SIGN: " << sign << "  Equ: " << equ << std::endl;
 	if (
 		(sign == SignPositive && equ == EquHsntAppeared) ||
 		(sign == SignNegative && equ == EquAppeared)
@@ -28,9 +30,9 @@ static void PushMonomial(
 	}
 }
 
-polinomial polinom_parser(const std::vector<tokenizer::Token>& tokens)
+polinomial<int, double> polinom_parser(const std::vector<tokenizer::Token>& tokens)
 {
-	polinomial Pol;
+	polinomial<int, double> Pol;
 
 	ParseStates state = StartState;
 	MonomialSign sign = SignPositive;
@@ -62,6 +64,8 @@ polinomial polinom_parser(const std::vector<tokenizer::Token>& tokens)
 				else if (token.token_type == tokenizer::TokenType::Variable)
 				{
 					// Pass...
+					INTexp = 1;
+					DOUBcoef = 1;
 					state = VariableState;
 				}
 				else
@@ -100,6 +104,7 @@ polinomial polinom_parser(const std::vector<tokenizer::Token>& tokens)
 					PushMonomial(Pol, sign, DOUBcoef, INTexp, equ);
 					equ = EquAppeared;
 					state = StartState;
+					sign = SignPositive;
 				}
 				else
 					throw std::runtime_error("Unexpected token near " + token.raw);
@@ -111,6 +116,7 @@ polinomial polinom_parser(const std::vector<tokenizer::Token>& tokens)
 				if (token.token_type == tokenizer::TokenType::Variable)
 				{
 					// Pass...
+					INTexp = 1;
 					state = VariableState;
 				}
 				else
@@ -144,6 +150,7 @@ polinomial polinom_parser(const std::vector<tokenizer::Token>& tokens)
 					PushMonomial(Pol, sign, DOUBcoef, INTexp, equ);
 					equ = EquAppeared;
 					state = StartState;
+					sign = SignPositive;
 				}
 				else
 					throw std::runtime_error("Unexpected token near " + token.raw);
@@ -183,6 +190,7 @@ polinomial polinom_parser(const std::vector<tokenizer::Token>& tokens)
 					PushMonomial(Pol, sign, DOUBcoef, INTexp, equ);
 					equ = EquAppeared;
 					state = StartState;
+					sign = SignPositive;
 				}
 				else
 					throw std::runtime_error("Unexpected token near " + token.raw);
@@ -191,6 +199,8 @@ polinomial polinom_parser(const std::vector<tokenizer::Token>& tokens)
 
 			case SignState:
 			{
+				DOUBcoef = 0;
+				INTexp = 0;
 				if (token.token_type == tokenizer::TokenType::Integer)
 				{
 					ss >> DOUBcoef;
@@ -204,6 +214,8 @@ polinomial polinom_parser(const std::vector<tokenizer::Token>& tokens)
 				else if (token.token_type == tokenizer::TokenType::Variable)
 				{
 					// Pass...
+					INTexp = 1;
+					DOUBcoef = 1;
 					state = VariableState;
 				}
 				else
@@ -212,7 +224,6 @@ polinomial polinom_parser(const std::vector<tokenizer::Token>& tokens)
 			}
 		}
 	}
-
 	PushMonomial(Pol, sign, DOUBcoef, INTexp, equ);
 
 	return Pol;

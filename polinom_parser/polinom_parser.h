@@ -31,6 +31,6 @@ enum EquStatus
 	EquAppeared
 };
 
-polinomial polinom_parser(const std::vector<tokenizer::Token>& tokens);
+polinomial<int, double> polinom_parser(const std::vector<tokenizer::Token>& tokens);
 
 #endif //COMPUTOR_POLINOM_PARSER_H
