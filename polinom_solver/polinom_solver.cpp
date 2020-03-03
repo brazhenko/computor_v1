@@ -45,6 +45,14 @@ PolSolutions SolvePolinomOfDegree1(const polinomial<int, double> & pol)
 	return solutions;
 }
 
+
+std::ostream&
+operator<<(std::ostream& os, const std::complex<double>& x)
+{
+	os << '(' << x.real() << " + " << x.imag() << "i)";
+	return os;
+}
+
 PolSolutions SolvePolinomOfDegree2(const polinomial<int, double> & pol)
 {
 	PolSolutions solutions;
