@@ -51,6 +51,8 @@ polinomial<int, double> polinom_parser(const std::vector<tokenizer::Token>& toke
 		
 			case StartState:
 			{
+				INTexp = 0;
+				DOUBcoef = 1;
 				if (token.token_type == tokenizer::TokenType::Integer)
 				{
 					ss >> DOUBcoef;

@@ -13,7 +13,16 @@ PolSolutions SolvePolinomOfDegree0(const polinomial<int, double> & pol)
 
 	// Step By Step algorithm
 	std::cout << "Just look at its reduced form once again:" << std::endl;
+	double A = pol.GetCoefByExponent(0);
 	pol.PrintPolinomial();
+	if (A == 0)
+	{
+		std::cout << "It is obvious, that every X in R is a solution." << std::endl;
+	}
+	else
+	{
+		std::cout << "It's obvious, that it has no solutions." << std::endl;
+	}
 	// std::cout << "All the Comlex numbers are the solution";
 	// End of Step By Step algorithm
 	return solutions;
@@ -29,7 +38,7 @@ PolSolutions SolvePolinomOfDegree1(const polinomial<int, double> & pol)
 	double A = pol.GetCoefByExponent(1), B = pol.GetCoefByExponent(0);
 	std::cout << "This must be clear: X = (-B) / A, where A = " << A << ", B = " << B << std::endl;
 	std::cout << "X = " << -B << " / " << A << " = " << -B/A << std::endl;
-	solutions.push_back(std::complex<double>{-B/A, 0});
+	solutions.push_back(std::complex<double> {-B/A, 0});
 
 	// End of Step By Step algorithm
 
@@ -91,6 +100,7 @@ PolSolutions SolvePolinomOfDegree3(const polinomial<int, double> & pol)
 {
 	PolSolutions solutions;
 
+	throw std::runtime_error("Solution of polinom of degree 3 is not available now");
 	return solutions;
 }
 
@@ -98,6 +108,7 @@ PolSolutions SolvePolinomOfDegree4(const polinomial<int, double> & pol)
 {
 	PolSolutions solutions;
 
+	throw std::runtime_error("Solution of polinom of degree 4 is not available now");
 	return solutions;
 }
 
