@@ -45,9 +45,7 @@ PolSolutions SolvePolinomOfDegree1(const polinomial<int, double> & pol)
 	return solutions;
 }
 
-
-std::ostream&
-operator<<(std::ostream& os, const std::complex<double>& x)
+std::ostream& operator<<(std::ostream& os, const std::complex<double>& x)
 {
 	os << '(' << x.real() << " + " << x.imag() << "i)";
 	return os;
@@ -68,13 +66,13 @@ PolSolutions SolvePolinomOfDegree2(const polinomial<int, double> & pol)
 	std::cout << "Let us find the solutions via discriminant: " << std::endl;
 	std::cout << "D = B^2 - 4 * A * C = " << D << std::endl;
 
-	// The threeeeee branches
+	// The three branches
 	if (D > 0)
 	{
 		std::cout << "D = " << D << " > 0 => the equation has 2 Real solutions" << std::endl;
 		std::cout << "The formula is: X = (-B ± √D) / (2 * A)" << std::endl;
-		double X1 = (-B + sqrt(D)) / (2 * A);
-		double X2 = (-B - sqrt(D)) / (2 * A);
+		double X1 = (-B + sqrt(D)) / (2 * A); X1 = X1 ? X1 : 0;
+		double X2 = (-B - sqrt(D)) / (2 * A); X2 = X2 ? X2 : 0;
 		solutions.push_back(std::complex<double> {X2, 0});
 		solutions.push_back(std::complex<double> {X2, 0});
 		std::cout << "After all, there are solutions: X1 = " << X1 << ", X2 = " << X2 << std::endl;
@@ -84,9 +82,9 @@ PolSolutions SolvePolinomOfDegree2(const polinomial<int, double> & pol)
 		std::cout << "D = " << D << " => the equation has 1 Real solution" << std::endl;
 		std::cout << "The formula is: X = (-B ± √D) / (2 * A)" << std::endl;
 		std::cout << "Simplier: X = -B / (2 * A)" << std::endl;
-		double X = -B / (2 * A);
+		double X = -B / (2 * A); X = X ? X : 0;
 		solutions.push_back(std::complex<double> {X, 0});
-		std::cout << "After all, the only solution: X = " << X << std::endl;
+		std::cout << "After all, the only solution (you'd rather say two matching solutions): X = " << X << std::endl;
 	}
 	else
 	{
