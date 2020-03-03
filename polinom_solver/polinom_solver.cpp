@@ -41,12 +41,12 @@ PolSolutions SolvePolinomOfDegree2(const polinomial<int, double> & pol)
 	PolSolutions solutions;
 
 	// Step By Step solution.
-
 	std::cout << "This equation has a form AX^2 + BX  + C = 0" << std::endl;
 	double
 	A = pol.GetCoefByExponent(2),
 	B = pol.GetCoefByExponent(1),
 	C = pol.GetCoefByExponent(0);
+
 	double D = B * B - 4 * A * C;
 	std::cout << "Let us find the solutions via discriminant: " << std::endl;
 	std::cout << "D = B^2 - 4 * A * C = " << D << std::endl;
@@ -58,8 +58,8 @@ PolSolutions SolvePolinomOfDegree2(const polinomial<int, double> & pol)
 		std::cout << "The formula is: X = (-B ± √D) / (2 * A)" << std::endl;
 		double X1 = (-B + sqrt(D)) / (2 * A);
 		double X2 = (-B - sqrt(D)) / (2 * A);
-		solutions.push_back(std::complex<double>{X2, 0});
-		solutions.push_back(std::complex<double>{X2, 0});
+		solutions.push_back(std::complex<double> {X2, 0});
+		solutions.push_back(std::complex<double> {X2, 0});
 		std::cout << "After all, there are solutions: X1 = " << X1 << ", X2 = " << X2 << std::endl;
 	}
 	else if (D == 0)
@@ -67,19 +67,21 @@ PolSolutions SolvePolinomOfDegree2(const polinomial<int, double> & pol)
 		std::cout << "D = " << D << " => the equation has 1 Real solution" << std::endl;
 		std::cout << "The formula is: X = (-B ± √D) / (2 * A)" << std::endl;
 		std::cout << "Simplier: X = -B / (2 * A)" << std::endl;
-
 		double X = -B / (2 * A);
-		solutions.push_back(std::complex<double>{X, 0});
-
+		solutions.push_back(std::complex<double> {X, 0});
 		std::cout << "After all, the only solution: X = " << X << std::endl;
 	}
 	else
 	{
 		std::cout << "D = " << D << " < 0 => the equation has 2 Complex solutions" << std::endl;
 		std::cout << "The formula is: X = (-B ± √D) / (2 * A)" << std::endl;
-
+		std::complex<double> cD{B * B - 4 * A * C, 0};
+		std::complex<double> X1((-B + std::pow(cD, 0.5)) / (2 * A));
+		std::complex<double> X2((-B - std::pow(cD, 0.5)) / (2 * A));
+		solutions.push_back(X1);
+		solutions.push_back(X2);
+		std::cout << "Complex solutions: " << "X1 = " << X1 << ", X2 = " << X2 << std::endl;
 	}
-
 	// End of Step By Step algorithm
 
 	return solutions;

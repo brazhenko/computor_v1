@@ -8,7 +8,7 @@
 #include <complex>
 #include "polinomial/polinomial.h"
 
-typedef std::vector<std::complex<double> > PolSolutions;
+typedef std::vector<std::complex<double>> PolSolutions;
 
 int 	polinom_solver(const polinomial<int, double>& pol);
 
