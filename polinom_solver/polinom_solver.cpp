@@ -106,7 +106,22 @@ PolSolutions SolvePolinomOfDegree3(const polinomial<int, double> & pol)
 {
 	PolSolutions solutions;
 
+	double
+	A = pol.GetCoefByExponent(3),
+	B = pol.GetCoefByExponent(2),
+	C = pol.GetCoefByExponent(1),
+	D = pol.GetCoefByExponent(0);
+
 	throw std::runtime_error("Solution of polinom of degree 3 is not available now");
+
+	if (D == 0)
+	{
+		// Solve it as equation of degree 2
+		return solutions;
+	}
+
+
+
 	return solutions;
 }
 

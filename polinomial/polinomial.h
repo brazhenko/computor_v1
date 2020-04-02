@@ -8,6 +8,7 @@
 #include <string>
 #include <map>
 #include <iostream>
+#include <cmath>
 
 template <typename Exp, typename Coef>
 class polinomial
@@ -29,13 +30,30 @@ public:
 		for (auto it = data.begin(); it != data.end(); it++)
 		{
 			if (it == data.begin())
-				std::cout << it->second << " * " << "X^" << it->first;
+			{
+				if (it->first == 0)
+					std::cout << it->second;
+				else if (it->first == 1)
+					std::cout << it->second << " * " << "X";
+				else
+					std::cout << it->second << " * " << "X^" << it->first;
+			}
 			else
 			{
 				if (it->second > 0)
-					std::cout << " + " << it->second << " * " << "X^" << it->first;
+				{
+					std::cout << " + " ;//<< it->second << " * " << "X^" << it->first;
+				}
 				else
-					std::cout << " - " << -it->second << " * " << "X^" << it->first;
+					std::cout << " - " ;//<< -it->second << " * " << "X^" << it->first;
+
+				///
+				if (it->first == 0)
+					std::cout << std::fabs(it->second);
+				else if (it->first == 1)
+					std::cout << std::fabs(it->second) << " * " << "X";
+				else
+					std::cout << std::fabs(it->second) << " * " << "X^" << it->first;
 			}
 		}
 		std::cout << " = 0" << std::endl;
