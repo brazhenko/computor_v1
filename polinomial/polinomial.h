@@ -56,9 +56,11 @@ public:
 					std::cout << std::fabs(it->second) << " * " << "X^" << it->first;
 			}
 		}
+		if (data.size() == 0)
+			std::cout << "0";
 		std::cout << " = 0" << std::endl;
+		std::cout << "Polynomial degree: " << GetMaxExponent() << std::endl;
 	}
-
 
 	[[nodiscard]] Exp GetMaxExponent() const
 	{

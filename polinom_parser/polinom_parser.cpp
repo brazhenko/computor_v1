@@ -70,6 +70,16 @@ polinomial<int, double> polinom_parser(const std::vector<tokenizer::Token>& toke
 					DOUBcoef = 1;
 					state = VariableState;
 				}
+				else if (token.token_type == tokenizer::TokenType::Minus)
+				{
+					sign = SignNegative;
+					state = SignState;
+				}
+				else if (token.token_type == tokenizer::TokenType::Plus)
+				{
+					sign = SignPositive;
+					state = SignState;
+				}
 				else
 					throw std::runtime_error("Unexpected token near " + token.raw);
 				break;

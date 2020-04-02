@@ -13,7 +13,7 @@ void	ComputorV1(const std::string& exp)
 	try
 	{
 		std::vector<tokenizer::Token> tokens = tokenizer::tokenize(exp);
-		PrintTokens(tokens);
+		// PrintTokens(tokens);
 		polinomial<int, double>  Pol = polinom_parser(tokens);
 		Pol.PrintPolinomial();
 		polinom_solver(Pol);

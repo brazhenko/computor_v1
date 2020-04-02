@@ -123,7 +123,7 @@ std::regex("[\n\t\v\r\f\\ ]+")
 		}
 		else
 		{
-			PrintTokens(vec);
+			// PrintTokens(vec);
 			throw std::runtime_error("Unknown sequence: " + std::string(s.c_str() + i_current_pos));
 		}
 	}

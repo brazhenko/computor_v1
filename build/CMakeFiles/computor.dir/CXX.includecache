@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../polinomial/polinomial.h
+string
+-
+map
+-
+iostream
+-
+cmath
+-
+
+../tokenizer/tokenizer.h
+string
+-
+vector
+-
+
+/Users/a17641238/Documents/Programming/computor_v1/polinom_parser/polinom_parser.cpp
+sstream
+-
+polinom_parser.h
+/Users/a17641238/Documents/Programming/computor_v1/polinom_parser/polinom_parser.h
+iostream
+-
+
+/Users/a17641238/Documents/Programming/computor_v1/polinom_parser/polinom_parser.h
+tokenizer/tokenizer.h
+/Users/a17641238/Documents/Programming/computor_v1/polinom_parser/tokenizer/tokenizer.h
+polinomial/polinomial.h
+/Users/a17641238/Documents/Programming/computor_v1/polinom_parser/polinomial/polinomial.h
+
