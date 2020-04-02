@@ -237,6 +237,19 @@ polinomial<int, double> polinom_parser(const std::vector<tokenizer::Token>& toke
 			}
 		}
 	}
+	// checking the input is ended correctly
+	switch (state)
+	{
+	case SignState:
+	case ExpCapState:
+	case MultiplicationState:
+	case StartState:
+		throw std::runtime_error("Unexpected end of expression");
+	default:
+		break;
+
+	}
+
 	// Adding last monomial to polinomial
 	PushMonomial(Pol, sign, DOUBcoef, INTexp, equ);
 
